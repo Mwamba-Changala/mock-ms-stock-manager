@@ -6,4 +6,6 @@ import com.mock.main.project.mock.Pojo.DevicePojo;
 public interface DeviceService {
 
     Device saveDevice(DevicePojo devicePojo);
+
+    Device findById(Long deviceId);
 }

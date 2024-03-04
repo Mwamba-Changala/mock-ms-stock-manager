@@ -13,6 +13,7 @@ import lombok.*;
 public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "device_id")
     Long id;
 
     @NonNull

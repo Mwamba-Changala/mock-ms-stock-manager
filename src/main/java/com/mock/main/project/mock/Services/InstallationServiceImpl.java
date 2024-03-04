@@ -1,12 +1,11 @@
 package com.mock.main.project.mock.Services;
 
-import com.mock.main.project.mock.Entites.Customer;
-import com.mock.main.project.mock.Entites.Installations;
-import com.mock.main.project.mock.Entites.Terminal;
-import com.mock.main.project.mock.Entites.TradingName;
+import com.mock.main.project.mock.Entites.*;
 import com.mock.main.project.mock.Enums.InstallationStatus;
 import com.mock.main.project.mock.Exception.InstallationNotFoundException;
 import com.mock.main.project.mock.Pojo.DateAnalyzer;
+import com.mock.main.project.mock.Pojo.DeployedDevices;
+import com.mock.main.project.mock.Repositories.DeviceRepository;
 import com.mock.main.project.mock.Repositories.InstallationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +20,13 @@ public class InstallationServiceImpl implements InstallationService {
 
     @Autowired
     InstallationsRepository installationsRepository;
+
+    @Autowired
+    DeployedDevicesService deployedDevicesService;
+
+    @Autowired
+    DeviceService deviceService;
+
     @Override
     public List<Installations> findInstallationByCustomerAndTradingNameId(Long customerId, Long tradingNameId) {
         return null;
@@ -41,6 +47,7 @@ public class InstallationServiceImpl implements InstallationService {
 
         installations.setInstallationStatus(InstallationStatus.PENDING);
         installations.setTerminals(terminal);
+
         return installationsRepository.save(installations);
     }
 
@@ -49,7 +56,11 @@ public class InstallationServiceImpl implements InstallationService {
 
         Installations updateInstallationStatus = unwrapInstallation(installationsRepository.findById(installationId));
 
+        deployedDevicesService.deployDevice( deviceService.findById(1L) ,updateInstallationStatus);
+
+//        check status of enum before updating
         updateInstallationStatus.setInstallationStatus(InstallationStatus.INSTALLED);
+
 
         return installationsRepository.save(updateInstallationStatus);
 
