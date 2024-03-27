@@ -4,7 +4,7 @@ import com.mock.main.project.mock.Entites.Customer;
 import com.mock.main.project.mock.Pojo.CustomerPojo;
 import com.mock.main.project.mock.Entites.TradingName;
 import com.mock.main.project.mock.Pojo.TradingNamePojo;
-import com.mock.main.project.mock.Services.TradingNameService;
+import com.mock.main.project.mock.ServiceInterfaces.TradingNameService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

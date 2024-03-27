@@ -2,7 +2,7 @@ package com.mock.main.project.mock.API;
 
 import com.mock.main.project.mock.Entites.Customer;
 import com.mock.main.project.mock.Pojo.CustomerPojo;
-import com.mock.main.project.mock.Services.CustomerService;
+import com.mock.main.project.mock.ServiceInterfaces.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.mock.main.project.mock.Services;
+package com.mock.main.project.mock.ServiceInterfaces;
 
 import com.mock.main.project.mock.Entites.Customer;
 import com.mock.main.project.mock.Pojo.CustomerPojo;

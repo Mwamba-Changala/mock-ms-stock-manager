@@ -3,9 +3,7 @@ package com.mock.main.project.mock;
 import com.mock.main.project.mock.Entites.*;
 import com.mock.main.project.mock.Enums.DeviceStatus;
 import com.mock.main.project.mock.Pojo.*;
-import com.mock.main.project.mock.Repositories.DeviceRepository;
-import com.mock.main.project.mock.Repositories.OutletRepository;
-import com.mock.main.project.mock.Services.*;
+import com.mock.main.project.mock.ServiceInterfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,7 +24,13 @@ public class MockApplication  implements CommandLineRunner {
 	@Autowired
 	InstallationService installationService;
 	@Autowired
-	private DeviceService deviceService;
+	 DeviceService deviceService;
+
+	@Autowired
+	SimcardService simcardService;
+
+	@Autowired
+	BaseService baseService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MockApplication.class, args);
@@ -60,6 +64,16 @@ public class MockApplication  implements CommandLineRunner {
 				new DevicePojo(1851209988L,"FNBZ3891" ,DeviceStatus.WORKING),
 		};
 
+		SimCardPojo[] simCardPojo = new SimCardPojo[]{
+				new SimCardPojo("MTN",23456789L,"172.30.124.34"),
+				new SimCardPojo("AIRTEL",30456678L,"172.30.300.27"),
+		};
+
+		BasePojo[] basePojo = new BasePojo[]{
+				new BasePojo(2290045678L),
+				new BasePojo(2290065579L)
+		};
+
 		for (int i= 0; i < customerPojo.length; i++){
 
 			Customer customer = customerService.saveCustomer(customerPojo[i]);
@@ -70,7 +84,12 @@ public class MockApplication  implements CommandLineRunner {
 
 			Terminal terminal = terminalService.saveTerminal(terminalPojo[i], outlet);
 
+
 			deviceService.saveDevice(devicePojo[i]);
+
+			simcardService.saveSimcards(simCardPojo[i]);
+
+			baseService.saveBases(basePojo[i]);
 
 			installationService.saveInstallation(customer,tradingName,terminal);
 

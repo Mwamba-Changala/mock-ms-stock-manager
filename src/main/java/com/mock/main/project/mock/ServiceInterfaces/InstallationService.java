@@ -1,9 +1,10 @@
-package com.mock.main.project.mock.Services;
+package com.mock.main.project.mock.ServiceInterfaces;
 
 import com.mock.main.project.mock.Entites.Customer;
 import com.mock.main.project.mock.Entites.Installations;
 import com.mock.main.project.mock.Entites.Terminal;
 import com.mock.main.project.mock.Entites.TradingName;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;

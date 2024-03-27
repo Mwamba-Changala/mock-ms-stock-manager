@@ -4,13 +4,14 @@ import com.mock.main.project.mock.Entites.Outlet;
 import com.mock.main.project.mock.Entites.TradingName;
 import com.mock.main.project.mock.Pojo.OutletPojo;
 import com.mock.main.project.mock.Repositories.OutletRepository;
+import com.mock.main.project.mock.ServiceInterfaces.OutletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class OutletServiceImpl implements OutletService{
+public class OutletServiceImpl implements OutletService {
 
     @Autowired
     OutletRepository outletRepository;

@@ -4,6 +4,7 @@ import com.mock.main.project.mock.Entites.Customer;
 import com.mock.main.project.mock.Entites.TradingName;
 import com.mock.main.project.mock.Pojo.TradingNamePojo;
 import com.mock.main.project.mock.Repositories.TradingNameRepository;
+import com.mock.main.project.mock.ServiceInterfaces.TradingNameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

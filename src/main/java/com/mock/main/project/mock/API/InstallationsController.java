@@ -1,11 +1,9 @@
 package com.mock.main.project.mock.API;
 
-import com.mock.main.project.mock.Services.InstallationService;
+import com.mock.main.project.mock.ServiceInterfaces.InstallationService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

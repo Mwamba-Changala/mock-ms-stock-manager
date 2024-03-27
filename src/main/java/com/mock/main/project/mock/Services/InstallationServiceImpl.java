@@ -4,9 +4,10 @@ import com.mock.main.project.mock.Entites.*;
 import com.mock.main.project.mock.Enums.InstallationStatus;
 import com.mock.main.project.mock.Exception.InstallationNotFoundException;
 import com.mock.main.project.mock.Pojo.DateAnalyzer;
-import com.mock.main.project.mock.Pojo.DeployedDevices;
-import com.mock.main.project.mock.Repositories.DeviceRepository;
 import com.mock.main.project.mock.Repositories.InstallationsRepository;
+import com.mock.main.project.mock.ServiceInterfaces.DeployedDevicesService;
+import com.mock.main.project.mock.ServiceInterfaces.DeviceService;
+import com.mock.main.project.mock.ServiceInterfaces.InstallationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,16 +55,20 @@ public class InstallationServiceImpl implements InstallationService {
     @Override
     public Installations updateInstallationStatus(Long installationId) {
 
-        Installations updateInstallationStatus = unwrapInstallation(installationsRepository.findById(installationId));
+        Installations updateInstallationStatus = installationsRepository.findById(installationId)
+                .orElseThrow(()-> new InstallationNotFoundException("Installation call not found"));
 
-        deployedDevicesService.deployDevice( deviceService.findById(1L) ,updateInstallationStatus);
-
+System.out.println(updateInstallationStatus.getInstallationStatus().toString());
+            if (updateInstallationStatus.getInstallationStatus() == InstallationStatus.PENDING) {
 //        check status of enum before updating
-        updateInstallationStatus.setInstallationStatus(InstallationStatus.INSTALLED);
+                deployedDevicesService.deployDevice( deviceService.findById(1L) ,updateInstallationStatus);
+                updateInstallationStatus.setInstallationStatus(InstallationStatus.INSTALLED);
 
+                return installationsRepository.save(updateInstallationStatus);
 
-        return installationsRepository.save(updateInstallationStatus);
+            }
 
+        return null;
     }
 
     @Override
@@ -86,7 +91,7 @@ public class InstallationServiceImpl implements InstallationService {
     static Installations unwrapInstallation(Optional<Installations> entity) {
 
         if (entity.isPresent()) return entity.get();
-        else throw new InstallationNotFoundException();
+        else return null;
 
     }
 

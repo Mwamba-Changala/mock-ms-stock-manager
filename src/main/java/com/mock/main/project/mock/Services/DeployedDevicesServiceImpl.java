@@ -4,11 +4,12 @@ import com.mock.main.project.mock.Entites.DeployedDevices;
 import com.mock.main.project.mock.Entites.Device;
 import com.mock.main.project.mock.Entites.Installations;
 import com.mock.main.project.mock.Repositories.DeployedDevicesRepository;
+import com.mock.main.project.mock.ServiceInterfaces.DeployedDevicesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DeployedDevicesServiceImpl implements DeployedDevicesService{
+public class DeployedDevicesServiceImpl implements DeployedDevicesService {
 
     @Autowired
     DeployedDevicesRepository deployedDevicesRepository;
